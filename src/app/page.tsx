@@ -1,14 +1,13 @@
-import Nav from "./components/ui/Nav";
+"use client";
+
 import Button from "./components/ui/Button";
+import { useRouter } from 'next/navigation';
+
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-gray-200">
-        <Nav />
-      </header>
-
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-16">
         {/* Hero Section */}
@@ -20,7 +19,7 @@ export default function Home() {
             Z Combinator provides seed funding for startups. We fund companies twice a year in batches.
           </p>
           <div className="space-x-4">
-            <Button text="Apply Now" isPrimary />
+            <Button text="Apply Now" isPrimary onClick={() => router.push('/fund')}/>
             <Button text="Learn More" />
           </div>
         </section>

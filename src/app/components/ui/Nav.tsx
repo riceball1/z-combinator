@@ -1,19 +1,25 @@
 "use client";
 
 import Button from "./Button";
+import NavLink from "./NavLink";
 import Link from "next/link";
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation';
 
 
 export default function Nav() {
+    const router = useRouter()
     const [isAuth, setIsAuth] = useState(false)
-
     const [buttonText, setButtonText] = useState("Login")
 
     useEffect(() => {
         setButtonText( isAuth ? "Sign Out" : "Login")
-    }, [isAuth])
 
+        if (!isAuth) {
+            router.push('/')
+        }
+
+    }, [isAuth])
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -22,8 +28,14 @@ export default function Nav() {
                     <Link href="/">Z Combinator</Link>
                 </div>
                 <nav className="hidden md:flex space-x-8 text-sm items-center">
-                    <Link href="/build" className="text-black hover:text-green-800">Build a startup</Link>
-                    <Link href="/work" className="text-black hover:text-green-800">Work at a startup</Link>
+                    <NavLink url="/fund" text="Fund a startup" />
+                    <NavLink url="/work" text="Work at a startup" />
+                    {isAuth && (
+                        <>
+                            <NavLink url="/inbox" text="Inbox" />
+                            <NavLink url="/account" text="Account" />
+                        </>
+                    )}
                     <Button isPrimary={!isAuth} text={buttonText} onClick={() => setIsAuth(prev => !prev)} />
                 </nav>
             </div>

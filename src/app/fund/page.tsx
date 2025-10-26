@@ -1,11 +1,10 @@
 
-export default function Work() {
+export default function Fund() {
     return (
         <div className="min-h-screen bg-white">
             {/* Main Content */}
             <main className="max-w-4xl mx-auto px-4 py-16">
-
-                <h1>Work at a Startup</h1>
+                <h1>Fund a Startup</h1>
             </main>
         </div>
     )
